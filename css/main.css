@@ -1,1 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap')
+* {
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+h1, h2, h3, h4, h5, h6, p, a, imput, textarea, ul {
+    margin: 0;
+    padding: 0%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    background-color:rgb(245, 95, 95)
+}
+
+.aside {
+    padding: 2rem;
+    color: #ececce;
+}
+
