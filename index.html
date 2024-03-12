@@ -18,20 +18,20 @@
             <nav>
                 <ul class="menu">
                     <li>
-                        <button class="boton-menu boton-categoria active">All Products</button>
+                        <button id="todos" class="boton-menu boton-categoria active">All Products</button>
                     </li>
                     <li>
-                        <button class="boton-menu boton-categoria">Sneakers</button>
+                        <button id="sneakers" class="boton-menu boton-categoria">Sneakers</button>
                     </li>
                     <li>
-                        <button class="boton-menu boton-categoria">Tee's</button>
+                        <button id="tee" class="boton-menu boton-categoria">Tee's</button>
                     </li>
                     <li>
-                        <button class="boton-menu boton-categoria">Jackets</button>
+                        <button id="jackets" class="boton-menu boton-categoria">Jackets</button>
                     </li>
                     <li>
                         <a class="boton-carrito" href="./cart.html">
-                            <i class="bi bi-cart-fill"></i> My Bag <span class="numerito">0</span></a>
+                            <i class="bi bi-cart-fill"></i> My Bag <span id="numerito" class="numerito">0</span></a>
                     </li>
                 </ul>
             </nav>
@@ -41,39 +41,8 @@
         </aside>
         <main>
             <h2 class="titulo-principal">What's in store?</h2>
-            <div class="contenedor-productos">
-                <div class="producto">
-                    <img class="producto-imagen" src="./assets/img/Campera 01.jpg" alt="Campera Adidas 01">
-                    <div class="producto-detalles">
-                        <h3 class="producto-titulo">Adidas SST Bomber Jacket</h3>
-                        <p class="producto-precio">USD$700</p>
-                        <button class="producto-agregar"><strong>Add to cart</strong></button>
-                    </div>
-                </div>
-                <div class="producto">
-                    <img class="producto-imagen" src="./assets/img/Campera 02.jpg" alt="Campera Adidas 02">
-                    <div class="producto-detalles">
-                        <h3 class="producto-titulo">Adidas Baseball Coaches Jacket</h3>
-                        <p class="producto-precio">USD$300</p>
-                        <button class="producto-agregar"><strong>Add to cart</strong></button>
-                    </div>
-                </div>
-                <div class="producto">
-                    <img class="producto-imagen" src="./assets/img/Campera 03.jpg" alt="Campera Adidas 03">
-                    <div class="producto-detalles">
-                        <h3 class="producto-titulo">Adidas VRCT Jacket</h3>
-                        <p class="producto-precio">USD$450</p>
-                        <button class="producto-agregar"><strong>Add To Cart</strong></button>
-                    </div>
-                </div>
-                <div class="producto">
-                    <img class="producto-imagen" src="./assets/img/Campera 04.jpg" alt="Campera Adidas 04">
-                    <div class="producto-detalles">
-                        <h3 class="producto-titulo">Adidas NY Windbreaker</h3>
-                        <p class="producto-precio">USD$500</p>
-                        <button class="producto-agregar"><strong>Add to cart</strong></button>
-                    </div>
-                </div>
+            <div id="contenedor-productos" class="contenedor-productos">
+                <!-- /*-------------------------Los productos se generarán con JavaScript-------------------------*/ -->
             </div>
         </main>
     </div>
