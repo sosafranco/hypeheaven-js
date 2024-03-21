@@ -4,43 +4,43 @@ const productos = [
     /*----------------------------Jackets---------------------------*/
     {
         id: "jacket-01",
-        titulo: "Adidas SST Bomber Jacket",
+        titulo: "Jacket 01",
         imagen: "./assets/img/Campera 01.jpg",
         categoria: {
             nombre: "Jackets",
             id: "jackets"
         },
-        precio: "USD$700",
+        precio: "100",
     },
     {
         id: "jacket-02",
-        titulo: "Adidas Baseball Coaches Jacket",
+        titulo: "Jacket 02",
         imagen: "./assets/img/Campera 02.jpg",
         categoria: {
             nombre: "Jackets",
             id: "jackets"
         },
-        precio: "USD$300"
+        precio: "100"
     },
     {
         id: "jacket-03",
-        titulo: "Adidas VRCT Jacket",
+        titulo: "Jacket 03",
         imagen: "./assets/img/Campera 03.jpg",
         categoria: {
             nombre: "Jackets",
             id: "jackets"
         },
-        precio: "USD$450"
+        precio: "100"
     },
     {
         id: "jacket-04",
-        titulo: "Adidas NY Windbreaker",
+        titulo: "Jacket 04",
         imagen: "./assets/img/Campera 04.jpg",
         categoria: {
             nombre: "Jackets",
             id: "jackets"
         },
-        precio: "USD$500"
+        precio: "100"
     },
     /*----------------------------Tee's----------------------------*/
     {
@@ -51,7 +51,7 @@ const productos = [
             nombre: "Tee's",
             id: "tee"
         },
-        precio: "USD$150",
+        precio: "50",
     },
     {
         id: "Tee-02",
@@ -61,7 +61,7 @@ const productos = [
             nombre: "Tee's",
             id: "tee"
         },
-        precio: "USD$150"
+        precio: "50"
     },
     {
         id: "Tee-03",
@@ -71,7 +71,7 @@ const productos = [
             nombre: "Tee's",
             id: "tee"
         },
-        precio: "USD$150"
+        precio: "50"
     },
     {
         id: "Tee-04",
@@ -81,7 +81,7 @@ const productos = [
             nombre: "Tee's",
             id: "tee",
         },
-        precio: "USD$150"
+        precio: "50"
     },
     /*----------------------------Sneakers----------------------------*/
     {
@@ -92,7 +92,7 @@ const productos = [
             nombre: "Sneakers",
             id: "sneakers"
         },
-        precio: "USD$400",
+        precio: "200",
     },
     {
         id: "Sneaker-02",
@@ -102,7 +102,7 @@ const productos = [
             nombre: "Sneakers",
             id: "sneakers"
         },
-        precio: "USD$400",
+        precio: "200",
     },
     {
         id: "Sneaker-03",
@@ -112,7 +112,7 @@ const productos = [
             nombre: "Sneakers",
             id: "sneakers"
         },
-        precio: "USD$400",
+        precio: "200",
     },
     {
         id: "Sneaker-04",
@@ -122,7 +122,7 @@ const productos = [
             nombre: "Sneakers",
             id: "sneakers"
         },
-        precio: "USD$400",
+        precio: "200",
     }
 ]
 
@@ -146,7 +146,7 @@ function cargarProductos(productosElegidos) {
         <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
         <div class="producto-detalles">
             <h3 class="producto-titulo">${producto.titulo}</h3>
-            <p class="producto-precio">${producto.precio}</p>
+            <p class="producto-precio">USD$${producto.precio}</p>
             <button class="producto-agregar" id="${producto.id}">Add to cart</button>
         </div>
         `;
@@ -182,7 +182,16 @@ function actualizarBotonesAgregar() {
     });
 }
 
-const productosAgregadosAlCarrito = [];
+let productosAgregadosAlCarrito;
+
+const productosAgregadosAlCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
+
+if(productosAgregadosAlCarritoLS) {
+    productosAgregadosAlCarrito = productosAgregadosAlCarritoLS;
+    numeroCarrito();
+} else {
+    productosAgregadosAlCarrito = [];
+}
 
 function agregarAlCarrito(e) {
 
@@ -199,7 +208,10 @@ function agregarAlCarrito(e) {
     }
 
     numeroCarrito();
-    console.log(productosAgregadosAlCarrito);
+
+    /*----------------------------LocalStorage----------------------------*/
+
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosAgregadosAlCarrito));
 }
 
 function numeroCarrito() {

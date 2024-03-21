@@ -37,69 +37,31 @@
         <main>
             <h2 class="titulo-principal">Checkout</h2>
             <div class="contenedor-carrito">
-                <p class="carrito-vacio">Your cart is empty! <i class="bi bi-emoji-frown-fill"></i></p>
+                <p id="carrito-vacio" class="carrito-vacio">Your cart it's empty!</p>
 
-                <div class="carrito-productos disabled">
+                <div id="carrito-productos" class="carrito-productos disabled">
+                    <!-- Se va a completar con JavaScript -->
+                </div>
 
-                    <div class="carrito-producto">
-                        <img class="carrito-producto-imagen" src="./assets/img/Campera 01.jpg" alt="">
-                        <div class="carrito-producto-titulo">
-                            <small>Titulo</small>
-                            <h3> Campera Adidas 01</h3>
-                        </div>
-                        <div class="carrito-producto-cantidad">
-                            <small>Cantidad</small>
-                            <p>1</p>
-                        </div>
-                        <div class="carrito-producto-precio">
-                            <small>Precio</small>
-                            <p>USD $700</p>
-                        </div>
-                        <div class="carrito-producto-subtotal">
-                            <small>Subtotal</small>
-                            <p>USD $700</p>
-                        </div>
-                        <button class="carrito-producto-eliminar"><i class="bi bi-trash-fill"></i></button>
+                <div id="carrito-acciones" class="carrito-acciones disabled">
+                    <div class="carrito-acciones-izquierda">
+                        <button id="carrito-acciones-vaciar" class="carrito-acciones-vaciar">Clean Cart</button>
                     </div>
-                    <div class="carrito-producto">
-                        <img class="carrito-producto-imagen" src="./assets/img/Campera 02.jpg" alt="">
-                        <div class="carrito-producto-titulo">
-                            <small>Titulo</small>
-                            <h3> Campera Adidas 02</h3>
+                    <div class="carrito-acciones-derecha">
+                        <div class="carrito-acciones-total">
+                            <p>Total:</p>
+                            <p id="total">$3000</p>
                         </div>
-                        <div class="carrito-producto-cantidad">
-                            <small>Cantidad</small>
-                            <p>1</p>
-                        </div>
-                    <div class="carrito-producto-precio">
-                        <small>Precio</small>
-                        <p>USD $300</p>
+                        <button id="carrito-acciones-comprar" class="carrito-acciones-comprar">Purchase</button>
                     </div>
-                    <div class="carrito-producto-subtotal">
-                        <small>Subtotal</small>
-                        <p>USD $1000</p>
-                    </div>
-                    <button class="carrito-producto-eliminar"><i class="bi bi-trash-fill"></i></button>
                 </div>
-                </div>
+
+                <p id="carrito-comprado" class="carrito-comprado disabled">Thanks for purchasing in HypeHeaven!<i class="bi bi-emoji-laughing"></i></p>
+
             </div>
-            <div class="carrito-acciones disabled">
-                <div class="carrito-acciones-izquierda">
-                    <button class="carrito-acciones-vaciar">Vaciar Carrito</button>
-                </div>
-                <div class="carrito-acciones-derecha">
-                    <div class="carrito-acciones-total">
-                        <p>Total:</p>
-                        <p id="total">$1000</p>
-                    </div>
-                    <button class="carrito-acciones-comprar">Comprar Ahora</button>
-                </div>
-            </div>
-            <p class="carrito-comprado disabled"> ¡Muchas gracias por comprar en Hype Heaven! <i class="bi bi-emoji-smile-fill"></i></p>
+        </main>
     </div>
-    </main>
-    </div>
-
+<script src="./js/cart.js"></script>
 </body>
 
 </html>
