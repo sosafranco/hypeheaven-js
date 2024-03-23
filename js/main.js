@@ -1,130 +1,11 @@
-/*----------------------------ARRAY DE PRODUCTOS----------------------------*/
+let productos = [];
 
-const productos = [
-    /*----------------------------Jackets---------------------------*/
-    {
-        id: "jacket-01",
-        titulo: "Jacket 01",
-        imagen: "./assets/img/Campera 01.jpg",
-        categoria: {
-            nombre: "Jackets",
-            id: "jackets"
-        },
-        precio: "100",
-    },
-    {
-        id: "jacket-02",
-        titulo: "Jacket 02",
-        imagen: "./assets/img/Campera 02.jpg",
-        categoria: {
-            nombre: "Jackets",
-            id: "jackets"
-        },
-        precio: "100"
-    },
-    {
-        id: "jacket-03",
-        titulo: "Jacket 03",
-        imagen: "./assets/img/Campera 03.jpg",
-        categoria: {
-            nombre: "Jackets",
-            id: "jackets"
-        },
-        precio: "100"
-    },
-    {
-        id: "jacket-04",
-        titulo: "Jacket 04",
-        imagen: "./assets/img/Campera 04.jpg",
-        categoria: {
-            nombre: "Jackets",
-            id: "jackets"
-        },
-        precio: "100"
-    },
-    /*----------------------------Tee's----------------------------*/
-    {
-        id: "tee-01",
-        titulo: "Tee 01",
-        imagen: "./assets/img/Tee 01.jpg",
-        categoria: {
-            nombre: "Tee's",
-            id: "tee"
-        },
-        precio: "50",
-    },
-    {
-        id: "Tee-02",
-        titulo: "Tee 02",
-        imagen: "./assets/img/Tee 02.jpg",
-        categoria: {
-            nombre: "Tee's",
-            id: "tee"
-        },
-        precio: "50"
-    },
-    {
-        id: "Tee-03",
-        titulo: "Tee 03",
-        imagen: "./assets/img/Tee 03.jpg",
-        categoria: {
-            nombre: "Tee's",
-            id: "tee"
-        },
-        precio: "50"
-    },
-    {
-        id: "Tee-04",
-        titulo: "Tee 04",
-        imagen: "./assets/img/Tee 04.jpg",
-        categoria: {
-            nombre: "Tee's",
-            id: "tee",
-        },
-        precio: "50"
-    },
-    /*----------------------------Sneakers----------------------------*/
-    {
-        id: "Sneaker-01",
-        titulo: "Sneaker 01",
-        imagen: "./assets/img/Sneaker 01.jpg",
-        categoria: {
-            nombre: "Sneakers",
-            id: "sneakers"
-        },
-        precio: "200",
-    },
-    {
-        id: "Sneaker-02",
-        titulo: "Sneaker 02",
-        imagen: "./assets/img/Sneaker 02.jpg",
-        categoria: {
-            nombre: "Sneakers",
-            id: "sneakers"
-        },
-        precio: "200",
-    },
-    {
-        id: "Sneaker-03",
-        titulo: "Sneaker 03",
-        imagen: "./assets/img/Sneaker 03.jpg",
-        categoria: {
-            nombre: "Sneakers",
-            id: "sneakers"
-        },
-        precio: "200",
-    },
-    {
-        id: "Sneaker-04",
-        titulo: "Sneaker 04",
-        imagen: "./assets/img/Sneaker 04.jpg",
-        categoria: {
-            nombre: "Sneakers",
-            id: "sneakers"
-        },
-        precio: "200",
-    }
-]
+fetch("./js/products.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
 
 /*----------------------------DOM----------------------------*/
 
@@ -157,7 +38,7 @@ function cargarProductos(productosElegidos) {
     actualizarBotonesAgregar();
 }
 
-cargarProductos(productos);
+
 
 botonesCategorias.forEach(boton => {
     boton.addEventListener("click", (e) => {
@@ -186,7 +67,7 @@ let productosAgregadosAlCarrito;
 
 const productosAgregadosAlCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
 
-if(productosAgregadosAlCarritoLS) {
+if (productosAgregadosAlCarritoLS) {
     productosAgregadosAlCarrito = productosAgregadosAlCarritoLS;
     numeroCarrito();
 } else {
@@ -194,6 +75,22 @@ if(productosAgregadosAlCarritoLS) {
 }
 
 function agregarAlCarrito(e) {
+
+    Toastify({
+        text: "Product added to your bag!",
+        duration: 1500,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "#2b2b2b",
+            borderRadius: "1.5rem",
+            textTransform: "uppercase",
+            fontSize: "0.75rem",
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
 
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);

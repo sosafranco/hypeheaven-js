@@ -13,7 +13,17 @@
     font-family: "Poppins", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, imput, textarea, ul {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+imput,
+textarea,
+ul {
     margin: 0;
     padding: 0%;
     font-family: "Poppins", sans-serif;
@@ -87,7 +97,8 @@ aside {
     padding: 1rem;
 }
 
-.boton-categoria.active, .boton-carrito.active {
+.boton-categoria.active,
+.boton-carrito.active {
     background-color: #f8f4f4;
     color: #2b2b2b;
     border-radius: 1rem;
@@ -129,7 +140,7 @@ main {
     border-top-right-radius: 1rem;
 }
 
-.producto{
+.producto {
     display: flex;
     flex-direction: column;
 }
@@ -183,7 +194,7 @@ main {
 
 .carrito-vacio,
 .carrito-comprado {
-    color:#2b2b2b;
+    color: #2b2b2b;
     font-size: 1.2rem;
     padding: 3rem;
 }
@@ -254,7 +265,7 @@ main {
     gap: 1rem;
 }
 
-.carrito-acciones-comprar{
+.carrito-acciones-comprar {
     border: 0;
     background-color: #088f1a;
     color: #f8f4f4;
