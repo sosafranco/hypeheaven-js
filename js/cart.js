@@ -69,6 +69,7 @@ function actualizarBotonesEliminar() {
 }
 
 function eliminarDelCarrito(e) {
+    /*----------------------------TOASTIFY JS----------------------------*/
     Toastify({
         text: "Product removed from your bag!",
         duration: 1500,
@@ -96,11 +97,11 @@ function eliminarDelCarrito(e) {
 botonVaciar.addEventListener("click", vaciarCarrito);
 
 function vaciarCarrito() {
-
+/*----------------------------SWEET ALERT 2----------------------------*/
     Swal.fire({
         title: "You do want to clean your cart?",
         icon: "question",
-        html: `${productosAgregadosAlCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} products will be removed from the cart`,
+        html: `${productosAgregadosAlCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} product/s will be removed from the cart`,
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,

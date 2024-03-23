@@ -1,3 +1,5 @@
+/*----------------------------FETCH----------------------------*/
+
 let productos = [];
 
 fetch("./js/products.json")
@@ -75,21 +77,21 @@ if (productosAgregadosAlCarritoLS) {
 }
 
 function agregarAlCarrito(e) {
-
+    /*----------------------------TOASTIFY JS----------------------------*/
     Toastify({
         text: "Product added to your bag!",
         duration: 1500,
         close: false,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
         style: {
             background: "#2b2b2b",
             borderRadius: "1.5rem",
             textTransform: "uppercase",
             fontSize: "0.75rem",
         },
-        onClick: function(){} // Callback after click
+        onClick: function(){}
     }).showToast();
 
     const idBoton = e.currentTarget.id;
