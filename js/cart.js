@@ -1,5 +1,7 @@
+/*----------------------------LocalStorage----------------------------*/
 const productosAgregadosAlCarrito = JSON.parse(localStorage.getItem("productos-en-carrito"));
 
+/*----------------------------DOM----------------------------*/
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
 const contenedorCarritoAcciones = document.querySelector("#carrito-acciones");
@@ -71,7 +73,7 @@ function actualizarBotonesEliminar() {
 function eliminarDelCarrito(e) {
     /*----------------------------TOASTIFY JS----------------------------*/
     Toastify({
-        text: "Product removed from your bag!",
+        text: "Product removed from cart!",
         duration: 1500,
         close: false,
         gravity: "top",
@@ -79,9 +81,9 @@ function eliminarDelCarrito(e) {
         stopOnFocus: true,
         style: {
             background: "#2b2b2b",
-            borderRadius: "1.5rem",
+            borderRadius: "2rem",
             textTransform: "uppercase",
-            fontSize: "0.75rem",
+            fontSize: "0.80rem",
         },
         onClick: function () { }
     }).showToast();
@@ -97,9 +99,9 @@ function eliminarDelCarrito(e) {
 botonVaciar.addEventListener("click", vaciarCarrito);
 
 function vaciarCarrito() {
-/*----------------------------SWEET ALERT 2----------------------------*/
+    /*----------------------------SWEET ALERT 2----------------------------*/
     Swal.fire({
-        title: "You do want to clean your cart?",
+        title: "Do you want to empty your cart?",
         icon: "question",
         html: `${productosAgregadosAlCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} product/s will be removed from the cart`,
         showCloseButton: true,

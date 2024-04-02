@@ -79,7 +79,7 @@ if (productosAgregadosAlCarritoLS) {
 function agregarAlCarrito(e) {
     /*----------------------------TOASTIFY JS----------------------------*/
     Toastify({
-        text: "Product added to your bag!",
+        text: "Product added to cart!",
         duration: 1500,
         close: false,
         gravity: "top",
@@ -89,9 +89,9 @@ function agregarAlCarrito(e) {
             background: "#2b2b2b",
             borderRadius: "1.5rem",
             textTransform: "uppercase",
-            fontSize: "0.75rem",
+            fontSize: "0.80rem",
         },
-        onClick: function(){}
+        onClick: function () { }
     }).showToast();
 
     const idBoton = e.currentTarget.id;
