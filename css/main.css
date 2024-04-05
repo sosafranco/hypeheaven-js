@@ -56,6 +56,10 @@ aside {
     height: 100vh;
 }
 
+nav {
+    width: fit-content;
+}
+
 .logo {
     font-weight: 600;
     font-size: 1.7rem;
