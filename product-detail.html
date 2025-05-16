@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Inicio | HypeHeaven </title>
-    <link rel="shortcut icon" href="assets/img/Logo.png" type="image/x-icon">
+    <title>Detalle de Producto | HypeHeaven</title>
+    <link rel="shortcut icon" href="./assets/img/Logo.png" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/product-detail.css">
+    <link rel="stylesheet" href="./css/reviews.css">
 </head>
 
 <body>
@@ -19,16 +21,9 @@
             </div>
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <button id="todos" class="nav-link active">Todos</button>
-                </li>
-                <li class="nav-item">
-                    <button id="sneakers" class="nav-link">Zapatillas</button>
-                </li>
-                <li class="nav-item">
-                    <button id="tee" class="nav-link">Camisetas</button>
-                </li>
-                <li class="nav-item">
-                    <button id="jackets" class="nav-link">Chaquetas</button>
+                    <a href="./index.html" class="nav-link">
+                        <i class="bi bi-house-fill"></i> Inicio
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="./login.html" class="nav-link">
@@ -46,9 +41,15 @@
         </nav>
 
         <main>
-            <h2 class="titulo-principal">¿Qué hay en la tienda?</h2>
-            <div id="contenedor-productos" class="contenedor-productos">
-                <!-- Los productos se crearán con JavaScript -->
+            <h2 class="titulo-principal">Detalle del Producto</h2>
+            <div id="contenedor-producto" class="contenedor-producto">
+                <!-- El detalle del producto se creará con JavaScript -->
+                <div class="producto-loader">Cargando...</div>
+            </div>
+            
+            <!-- Sección de reseñas -->
+            <div id="contenedor-reviews" class="contenedor-reviews">
+                <!-- Las reseñas se generarán con JavaScript -->
             </div>
         </main>
         <footer class="main-footer">
@@ -56,7 +57,8 @@
         </footer>
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script type="module" src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="./js/product-detail.js"></script>
     <script>
         // Script para el efecto de blur al hacer scroll
         window.addEventListener('scroll', function() {
@@ -78,4 +80,4 @@
     </script>
 </body>
 
-</html>
+</html> 

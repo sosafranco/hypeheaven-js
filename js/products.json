@@ -3,120 +3,288 @@
         "id": "jacket-01",
         "titulo": "SST Bomber Jacket",
         "imagen": "./assets/img/Campera 01.jpg",
+        "imagenes": [
+            "./assets/img/Campera 01.jpg",
+            "./assets/img/Campera 01_2.jpg",
+            "./assets/img/Campera 01_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Jackets",
+            "nombre": "Chaquetas",
             "id": "jackets"
         },
-        "precio": "140"
+        "precio": "140",
+        "descripcion": "Esta chaqueta bomber SST es un clásico de Adidas reimaginado con un enfoque moderno. Fabricada con materiales sostenibles, ofrece comodidad y estilo duradero.",
+        "tallas": ["S", "M", "L", "XL", "XXL"],
+        "caracteristicas": [
+            "Material: 100% poliéster reciclado",
+            "Cierre frontal con cremallera",
+            "Bolsillos laterales con cierre",
+            "Cuello, puños y dobladillo acanalados",
+            "Diseño inspirado en el estilo atlético clásico"
+        ]
     },
     {
         "id": "jacket-02",
         "titulo": "Baseball Coaches Jacket",
         "imagen": "./assets/img/Campera 02.jpg",
+        "imagenes": [
+            "./assets/img/Campera 02.jpg",
+            "./assets/img/Campera 02_2.jpg",
+            "./assets/img/Campera 02_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Jackets",
+            "nombre": "Chaquetas",
             "id": "jackets"
         },
-        "precio": "150"
+        "precio": "150",
+        "descripcion": "La chaqueta de entrenador de béisbol combina un diseño clásico con funcionalidad moderna. Inspirada en el deporte americano, es perfecta para un look casual y deportivo.",
+        "tallas": ["S", "M", "L", "XL"],
+        "caracteristicas": [
+            "Material exterior: 65% poliéster, 35% algodón",
+            "Forro interior cálido",
+            "Cierre de botones a presión",
+            "Cuello alto para mayor protección",
+            "Logo bordado en el pecho"
+        ]
     },
     {
         "id": "jacket-03",
         "titulo": "VRCT Jacket",
         "imagen": "./assets/img/Campera 03.jpg",
+        "imagenes": [
+            "./assets/img/Campera 03.jpg",
+            "./assets/img/Campera 03_2.jpg",
+            "./assets/img/Campera 03_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Jackets",
+            "nombre": "Chaquetas",
             "id": "jackets"
         },
-        "precio": "160"
+        "precio": "160",
+        "descripcion": "La chaqueta VRCT combina un estilo deportivo con un ajuste moderno. Perfecta para entrenamientos o uso casual, esta chaqueta versátil te mantiene cómodo en cualquier situación.",
+        "tallas": ["XS", "S", "M", "L", "XL", "XXL"],
+        "caracteristicas": [
+            "Tejido de punto doble: 70% algodón, 30% poliéster reciclado",
+            "Corte regular",
+            "Bolsillos frontales con cremallera",
+            "Puños y dobladillo elásticos",
+            "Parche intercambiable en el pecho"
+        ]
     },
     {
         "id": "jacket-04",
         "titulo": "Adidas NY Windbreaker",
         "imagen": "./assets/img/Campera 04.jpg",
+        "imagenes": [
+            "./assets/img/Campera 04.jpg",
+            "./assets/img/Campera 04_2.jpg",
+            "./assets/img/Campera 04_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Jackets",
+            "nombre": "Chaquetas",
             "id": "jackets"
         },
-        "precio": "90"
+        "precio": "90",
+        "descripcion": "Este cortavientos NY de Adidas está diseñado para protegerte de los elementos mientras mantienes un estilo urbano. Ligero y funcional, es ideal para el uso diario.",
+        "tallas": ["S", "M", "L", "XL"],
+        "caracteristicas": [
+            "100% nylon reciclado",
+            "Tecnología resistente al agua",
+            "Capucha ajustable con cordón",
+            "Diseño inspirado en Nueva York",
+            "Dobladillo ajustable con cordón"
+        ]
     },
     {
         "id": "tee-01",
         "titulo": "Adidas Basketball Tee",
         "imagen": "./assets/img/Tee 01.jpg",
+        "imagenes": [
+            "./assets/img/Tee 01.jpg",
+            "./assets/img/Tee 01_2.jpg",
+            "./assets/img/Tee 01_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Tee's",
+            "nombre": "Camisetas",
             "id": "tee"
         },
-        "precio": "40"
+        "precio": "40",
+        "descripcion": "Camiseta de baloncesto Adidas con un diseño clásico y moderno. Perfecta para jugar o para un look casual inspirado en el deporte.",
+        "tallas": ["S", "M", "L", "XL", "XXL"],
+        "caracteristicas": [
+            "100% algodón orgánico",
+            "Corte regular",
+            "Cuello redondo acanalado",
+            "Gráfico impreso",
+            "Tecnología de absorción de humedad"
+        ]
     },
     {
         "id": "Tee-02",
         "titulo": "Adicolor Trefoil Tee",
         "imagen": "./assets/img/Tee 02.jpg",
+        "imagenes": [
+            "./assets/img/Tee 02.jpg",
+            "./assets/img/Tee 02_2.jpg",
+            "./assets/img/Tee 02_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Tee's",
+            "nombre": "Camisetas",
             "id": "tee"
         },
-        "precio": "30"
+        "precio": "30",
+        "descripcion": "La camiseta Adicolor Trefoil presenta el icónico logo de Adidas en un diseño minimalista. Este clásico atemporal es un básico indispensable para cualquier armario.",
+        "tallas": ["XS", "S", "M", "L", "XL"],
+        "caracteristicas": [
+            "100% algodón de punto sencillo",
+            "Corte regular",
+            "Cuello redondo acanalado",
+            "Logo Trefoil estampado",
+            "Tejido suave y transpirable"
+        ]
     },
     {
         "id": "Tee-03",
         "titulo": "Trefoil Essentials Tee",
         "imagen": "./assets/img/Tee 03.jpg",
+        "imagenes": [
+            "./assets/img/Tee 03.jpg",
+            "./assets/img/Tee 03_2.jpg",
+            "./assets/img/Tee 03_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Tee's",
+            "nombre": "Camisetas",
             "id": "tee"
         },
-        "precio": "30"
+        "precio": "30",
+        "descripcion": "Una camiseta esencial con el emblemático logotipo Trefoil. Su diseño minimalista y versátil la convierte en una pieza clave para cualquier look casual.",
+        "tallas": ["S", "M", "L", "XL"],
+        "caracteristicas": [
+            "100% algodón",
+            "Corte regular",
+            "Cuello redondo",
+            "Logotipo Trefoil impreso en el pecho",
+            "Ideal para uso diario"
+        ]
     },
     {
         "id": "Tee-04",
         "titulo": "El Mejor Del Mundo Messi Tee",
         "imagen": "./assets/img/Tee 04.jpg",
+        "imagenes": [
+            "./assets/img/Tee 04.jpg",
+            "./assets/img/Tee 04_2.jpg",
+            "./assets/img/Tee 04_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Tee's",
+            "nombre": "Camisetas",
             "id": "tee"
         },
-        "precio": "35"
+        "precio": "35",
+        "descripcion": "Celebra al mejor jugador del mundo con esta camiseta tributo a Lionel Messi. Un homenaje a la leyenda del fútbol con un diseño exclusivo.",
+        "tallas": ["S", "M", "L", "XL", "XXL"],
+        "caracteristicas": [
+            "100% algodón premium",
+            "Corte regular",
+            "Cuello redondo",
+            "Gráfico impreso de alta calidad",
+            "Edición especial tributo a Messi"
+        ]
     },
     {
         "id": "Sneaker-01",
         "titulo": "Superstar Shoes",
         "imagen": "./assets/img/Sneaker 01.jpg",
+        "imagenes": [
+            "./assets/img/Sneaker 01.jpg",
+            "./assets/img/Sneaker 01_2.jpg",
+            "./assets/img/Sneaker 01_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Sneakers",
+            "nombre": "Zapatillas",
             "id": "sneakers"
         },
-        "precio": "100"
+        "precio": "100",
+        "descripcion": "Las zapatillas Superstar, reconocibles por su característico diseño de puntera en forma de concha, han pasado de las canchas de baloncesto a convertirse en un ícono del streetwear.",
+        "tallas": ["38", "39", "40", "41", "42", "43", "44", "45"],
+        "caracteristicas": [
+            "Parte superior de cuero",
+            "Forro de tela",
+            "Suela de goma",
+            "Puntera de goma en forma de concha",
+            "Diseño con 3 bandas dentadas"
+        ]
     },
     {
         "id": "Sneaker-02",
         "titulo": "Forum Low Shoes",
         "imagen": "./assets/img/Sneaker 02.jpg",
+        "imagenes": [
+            "./assets/img/Sneaker 02.jpg",
+            "./assets/img/Sneaker 02_2.jpg",
+            "./assets/img/Sneaker 02_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Sneakers",
+            "nombre": "Zapatillas",
             "id": "sneakers"
         },
-        "precio": "100"
+        "precio": "100",
+        "descripcion": "Las Forum Low recuperan toda la actitud de los 80 para las calles de hoy. Estas zapatillas clásicas de baloncesto conservan todos los detalles originales con un toque moderno.",
+        "tallas": ["38", "39", "40", "41", "42", "43", "44"],
+        "caracteristicas": [
+            "Parte superior de cuero sintético",
+            "Correa en el tobillo desmontable",
+            "Mediasuela de EVA",
+            "Suela de goma que no deja marcas",
+            "Diseño de perfil bajo inspirado en el baloncesto"
+        ]
     },
     {
         "id": "Sneaker-03",
         "titulo": "Rivalry 86 Low Shoes",
         "imagen": "./assets/img/Sneaker 03.jpg",
+        "imagenes": [
+            "./assets/img/Sneaker 03.jpg",
+            "./assets/img/Sneaker 03_2.jpg",
+            "./assets/img/Sneaker 03_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Sneakers",
+            "nombre": "Zapatillas",
             "id": "sneakers"
         },
-        "precio": "120"
+        "precio": "120",
+        "descripcion": "Las zapatillas Rivalry 86 Low fusionan el estilo retro de baloncesto con un diseño contemporáneo. Inspiradas en un modelo clásico, ofrecen comodidad y estilo atemporal.",
+        "tallas": ["39", "40", "41", "42", "43", "44", "45"],
+        "caracteristicas": [
+            "Parte superior de cuero premium",
+            "Forro textil",
+            "Mediasuela cómoda",
+            "Suela de goma resistente",
+            "Detalles en contraste inspirados en los 80"
+        ]
     },
     {
         "id": "Sneaker-04",
         "titulo": "Grand Court 2.0 Shoes",
         "imagen": "./assets/img/Sneaker 04.jpg",
+        "imagenes": [
+            "./assets/img/Sneaker 04.jpg",
+            "./assets/img/Sneaker 04_2.jpg",
+            "./assets/img/Sneaker 04_3.jpg"
+        ],
         "categoria": {
-            "nombre": "Sneakers",
+            "nombre": "Zapatillas",
             "id": "sneakers"
         },
-        "precio": "70"
+        "precio": "70",
+        "descripcion": "Las zapatillas Grand Court 2.0 actualizan un diseño clásico con mejoras de comodidad. Su estilo versátil y minimalista las hace perfectas para el uso diario.",
+        "tallas": ["37", "38", "39", "40", "41", "42", "43", "44"],
+        "caracteristicas": [
+            "Parte superior de cuero sintético",
+            "Forro textil transpirable",
+            "Plantilla Cloudfoam para mayor comodidad",
+            "Suela de goma duradera",
+            "Diseño versátil para cualquier ocasión"
+        ]
     }
 ]

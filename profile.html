@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil | HypeHeaven</title>
+    <link rel="shortcut icon" href="./assets/img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/profile.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="./index.html" class="logo">HypeHeaven</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link">
+                        <i class="bi bi-house-fill"></i> Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <button id="logout-button" class="nav-link">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    </button>
+                </li>
+            </ul>
+            <a href="./cart.html" class="cart-btn">
+                <i class="bi bi-cart-fill"></i> Carrito
+                <span id="numerito" class="cart-count">0</span>
+            </a>
+            <button class="mobile-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </nav>
+
+        <main>
+            <h2 class="titulo-principal">Mi Perfil</h2>
+
+            <div class="profile-container">
+                <!-- Menú de navegación del perfil -->
+                <div class="profile-nav">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <div class="profile-name" id="profile-name">
+                            <!-- Nombre del usuario -->
+                        </div>
+                    </div>
+                    <ul class="profile-menu">
+                        <li>
+                            <button class="profile-nav-item active" data-section="personal-info">
+                                <i class="bi bi-person"></i> Información Personal
+                            </button>
+                        </li>
+                        <li>
+                            <button class="profile-nav-item" data-section="orders">
+                                <i class="bi bi-bag"></i> Mis Pedidos
+                            </button>
+                        </li>
+                        <li>
+                            <button class="profile-nav-item" data-section="wishlist">
+                                <i class="bi bi-heart"></i> Lista de Deseos
+                            </button>
+                        </li>
+                        <li>
+                            <button class="profile-nav-item" data-section="addresses">
+                                <i class="bi bi-geo-alt"></i> Direcciones
+                            </button>
+                        </li>
+                        <li>
+                            <button class="profile-nav-item" data-section="notifications">
+                                <i class="bi bi-bell"></i> Notificaciones
+                            </button>
+                        </li>
+                        <li>
+                            <button class="profile-nav-item" data-section="security">
+                                <i class="bi bi-shield-lock"></i> Seguridad
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contenido del perfil -->
+                <div class="profile-content">
+                    <!-- Sección de información personal -->
+                    <div class="profile-section active" id="personal-info">
+                        <h3>Información Personal</h3>
+                        <form id="personal-info-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="full-name">Nombre Completo</label>
+                                    <input type="text" id="full-name" name="full-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Correo Electrónico</label>
+                                    <input type="email" id="email" name="email" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Teléfono</label>
+                                    <input type="tel" id="phone" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="birth-date">Fecha de Nacimiento</label>
+                                    <input type="date" id="birth-date" name="birth-date">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="save-button">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Sección de pedidos -->
+                    <div class="profile-section" id="orders">
+                        <h3>Mis Pedidos</h3>
+                        <div class="empty-state" id="empty-orders">
+                            <i class="bi bi-bag-x"></i>
+                            <p>No tienes pedidos realizados.</p>
+                            <a href="./index.html" class="cta-button">Ir a la Tienda</a>
+                        </div>
+                        <div class="orders-list" id="orders-list">
+                            <!-- Historial de pedidos se generará con JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Sección de lista de deseos -->
+                    <div class="profile-section" id="wishlist">
+                        <h3>Lista de Deseos</h3>
+                        <div class="empty-state" id="empty-wishlist">
+                            <i class="bi bi-heart"></i>
+                            <p>Tu lista de deseos está vacía.</p>
+                            <a href="./index.html" class="cta-button">Explorar Productos</a>
+                        </div>
+                        <div class="wishlist-grid" id="wishlist-items">
+                            <!-- Productos de la lista de deseos se generarán con JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Sección de direcciones -->
+                    <div class="profile-section" id="addresses">
+                        <h3>Mis Direcciones</h3>
+                        <div class="addresses-list" id="addresses-list">
+                            <!-- Direcciones se generarán con JavaScript -->
+                        </div>
+                        <button class="add-address-button" id="add-address-button">
+                            <i class="bi bi-plus-circle"></i> Agregar Nueva Dirección
+                        </button>
+                        
+                        <!-- Formulario para agregar/editar dirección -->
+                        <div class="address-form-container" id="address-form-container">
+                            <h4 id="address-form-title">Agregar Nueva Dirección</h4>
+                            <form id="address-form">
+                                <input type="hidden" id="address-id" name="address-id">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="address-name">Nombre de la dirección</label>
+                                        <input type="text" id="address-name" name="address-name" placeholder="Ej: Casa, Trabajo">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="address-line">Dirección</label>
+                                        <input type="text" id="address-line" name="address-line">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="address-city">Ciudad</label>
+                                        <input type="text" id="address-city" name="address-city">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address-postal">Código Postal</label>
+                                        <input type="text" id="address-postal" name="address-postal">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="address-country">País</label>
+                                        <select id="address-country" name="address-country">
+                                            <option value="">Seleccionar país</option>
+                                            <option value="AR">Argentina</option>
+                                            <option value="CL">Chile</option>
+                                            <option value="UY">Uruguay</option>
+                                            <option value="PY">Paraguay</option>
+                                            <option value="BR">Brasil</option>
+                                            <option value="CO">Colombia</option>
+                                            <option value="MX">México</option>
+                                            <option value="ES">España</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="default-address-checkbox">
+                                        <input type="checkbox" id="default-address" name="default-address">
+                                        <label for="default-address">Establecer como dirección predeterminada</label>
+                                    </div>
+                                </div>
+                                <div class="form-buttons">
+                                    <button type="button" class="cancel-button" id="cancel-address-button">Cancelar</button>
+                                    <button type="submit" class="save-button">Guardar Dirección</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Sección de notificaciones -->
+                    <div class="profile-section" id="notifications">
+                        <h3>Preferencias de Notificaciones</h3>
+                        <div class="notification-settings">
+                            <div class="notification-option">
+                                <div class="notification-info">
+                                    <h4>Correos electrónicos promocionales</h4>
+                                    <p>Recibe ofertas y promociones exclusivas en tu correo</p>
+                                </div>
+                                <div class="notification-toggle">
+                                    <input type="checkbox" id="promo-emails" class="toggle-checkbox" checked>
+                                    <label for="promo-emails" class="toggle-label"></label>
+                                </div>
+                            </div>
+                            <div class="notification-option">
+                                <div class="notification-info">
+                                    <h4>Notificaciones de pedidos</h4>
+                                    <p>Recibe actualizaciones sobre el estado de tus pedidos</p>
+                                </div>
+                                <div class="notification-toggle">
+                                    <input type="checkbox" id="order-notifications" class="toggle-checkbox" checked>
+                                    <label for="order-notifications" class="toggle-label"></label>
+                                </div>
+                            </div>
+                            <div class="notification-option">
+                                <div class="notification-info">
+                                    <h4>Notificaciones de reposición</h4>
+                                    <p>Aviso cuando los productos que te interesen vuelvan a estar disponibles</p>
+                                </div>
+                                <div class="notification-toggle">
+                                    <input type="checkbox" id="restock-notifications" class="toggle-checkbox">
+                                    <label for="restock-notifications" class="toggle-label"></label>
+                                </div>
+                            </div>
+                            <div class="notification-option">
+                                <div class="notification-info">
+                                    <h4>Notificaciones de nuevos productos</h4>
+                                    <p>Mantente al día con los lanzamientos de nuevos productos</p>
+                                </div>
+                                <div class="notification-toggle">
+                                    <input type="checkbox" id="new-products-notifications" class="toggle-checkbox">
+                                    <label for="new-products-notifications" class="toggle-label"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección de seguridad -->
+                    <div class="profile-section" id="security">
+                        <h3>Seguridad de la Cuenta</h3>
+                        <div class="section-group">
+                            <h4>Cambiar Contraseña</h4>
+                            <form id="change-password-form">
+                                <div class="form-group">
+                                    <label for="current-password">Contraseña Actual</label>
+                                    <input type="password" id="current-password" name="current-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">Nueva Contraseña</label>
+                                    <input type="password" id="new-password" name="new-password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-new-password">Confirmar Nueva Contraseña</label>
+                                    <input type="password" id="confirm-new-password" name="confirm-new-password">
+                                </div>
+                                <div class="password-requirements">
+                                    <p>La contraseña debe contener:</p>
+                                    <ul>
+                                        <li>Al menos 8 caracteres</li>
+                                        <li>Al menos una letra mayúscula</li>
+                                        <li>Al menos un número</li>
+                                        <li>Al menos un carácter especial</li>
+                                    </ul>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="save-button">Actualizar Contraseña</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="section-group">
+                            <h4>Sesiones Activas</h4>
+                            <div class="active-sessions">
+                                <div class="session-item current">
+                                    <div class="session-info">
+                                        <i class="bi bi-laptop"></i>
+                                        <div>
+                                            <h5>Este dispositivo</h5>
+                                            <p>Windows - Chrome</p>
+                                            <p>Última actividad: Ahora</p>
+                                        </div>
+                                    </div>
+                                    <div class="session-actions">
+                                        <span class="current-device">Dispositivo actual</span>
+                                    </div>
+                                </div>
+                                <div class="session-item">
+                                    <div class="session-info">
+                                        <i class="bi bi-phone"></i>
+                                        <div>
+                                            <h5>iPhone</h5>
+                                            <p>iOS - Safari</p>
+                                            <p>Última actividad: Hace 2 horas</p>
+                                        </div>
+                                    </div>
+                                    <div class="session-actions">
+                                        <button class="logout-session">Cerrar Sesión</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="logout-all-button">Cerrar Todas las Sesiones</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="main-footer">
+            <p class="texto-footer">¡Síguenos en Instagram! @HypeHeaven</p>
+        </footer>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="module" src="./js/profile.js"></script>
+    <script>
+        // Script para el efecto de blur al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Script para el menú móvil
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html> 

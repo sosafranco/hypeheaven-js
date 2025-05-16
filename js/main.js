@@ -1,119 +1,80 @@
-/*----------------------------FETCH----------------------------*/
+/**
+ * Script principal para la página de productos
+ */
 
-let productos = [];
+// Importar módulos
+import { fetchProducts, filterProductsByCategory, findProductById } from './modules/products.js';
+import { 
+    loadCartFromLocalStorage, 
+    saveCartToLocalStorage, 
+    addProductToCart
+} from './modules/cart.js';
+import { 
+    renderProducts, 
+    showNotification, 
+    updateCartBadge 
+} from './modules/ui.js';
 
-fetch("./js/products.json")
-    .then(response => response.json())
-    .then(data => {
-        productos = data;
-        cargarProductos(productos);
-    })
-
-/*----------------------------DOM----------------------------*/
-
+// Elementos del DOM
 const contenedorProductos = document.querySelector("#contenedor-productos");
-const botonesCategorias = document.querySelectorAll(".boton-categoria");
-let botonesAgregar = document.querySelectorAll(".producto-agregar");
+const botonesCategorias = document.querySelectorAll(".nav-link[id]");
 const numerito = document.querySelector("#numerito");
 
+// Variables globales
+let productos = [];
+let carrito = loadCartFromLocalStorage();
 
-function cargarProductos(productosElegidos) {
+// Inicialización
+const init = async () => {
+    // Cargar productos
+    productos = await fetchProducts();
+    
+    // Renderizar productos
+    renderProducts(productos, contenedorProductos, agregarAlCarrito);
+    
+    // Actualizar contador del carrito
+    updateCartBadge(carrito, numerito);
+    
+    // Configurar eventos de categorías
+    setupCategoryButtons();
+};
 
-    contenedorProductos.innerHTML = "";
-
-    productosElegidos.forEach(producto => {
-
-        const div = document.createElement("div");
-        div.classList.add("producto");
-        div.innerHTML = `
-        <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
-        <div class="producto-detalles">
-            <h3 class="producto-titulo">${producto.titulo}</h3>
-            <p class="producto-precio">USD$${producto.precio}</p>
-            <button class="producto-agregar" id="${producto.id}">Add to cart</button>
-        </div>
-        `;
-
-        contenedorProductos.append(div);
-    })
-
-    actualizarBotonesAgregar();
-}
-
-
-
-botonesCategorias.forEach(boton => {
-    boton.addEventListener("click", (e) => {
-
-        botonesCategorias.forEach(boton => boton.classList.remove("active"));
-        e.currentTarget.classList.add("active");
-
-        if (e.currentTarget.id != "todos") {
-            const productoCategoria = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
-            cargarProductos(productoCategoria);
-        } else {
-            cargarProductos(productos);
-        }
-    })
-})
-
-function actualizarBotonesAgregar() {
-    botonesAgregar = document.querySelectorAll(".producto-agregar");
-
-    botonesAgregar.forEach(boton => {
-        boton.addEventListener("click", agregarAlCarrito);
+// Configurar botones de categoría
+const setupCategoryButtons = () => {
+    botonesCategorias.forEach(boton => {
+        boton.addEventListener("click", (e) => {
+            // Actualizar estado visual de los botones
+            botonesCategorias.forEach(btn => btn.classList.remove("active"));
+            e.currentTarget.classList.add("active");
+            
+            // Filtrar productos por categoría
+            const categoriaId = e.currentTarget.id;
+            const productosFiltrados = filterProductsByCategory(productos, categoriaId);
+            
+            // Renderizar productos filtrados
+            renderProducts(productosFiltrados, contenedorProductos, agregarAlCarrito);
+        });
     });
-}
+};
 
-let productosAgregadosAlCarrito;
-
-const productosAgregadosAlCarritoLS = JSON.parse(localStorage.getItem("productos-en-carrito"));
-
-if (productosAgregadosAlCarritoLS) {
-    productosAgregadosAlCarrito = productosAgregadosAlCarritoLS;
-    numeroCarrito();
-} else {
-    productosAgregadosAlCarrito = [];
-}
-
+// Función para agregar productos al carrito
 function agregarAlCarrito(e) {
-    /*----------------------------TOASTIFY JS----------------------------*/
-    Toastify({
-        text: "Product added to cart!",
-        duration: 1500,
-        close: false,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-        style: {
-            background: "#2b2b2b",
-            borderRadius: "1.5rem",
-            textTransform: "uppercase",
-            fontSize: "0.80rem",
-        },
-        onClick: function () { }
-    }).showToast();
-
+    // Mostrar notificación
+    showNotification("¡Producto agregado al carrito!");
+    
+    // Obtener producto seleccionado
     const idBoton = e.currentTarget.id;
-    const productoAgregado = productos.find(producto => producto.id === idBoton);
-
-    if (productosAgregadosAlCarrito.some(producto => producto.id === idBoton)) {
-        const index = productosAgregadosAlCarrito.findIndex(producto => producto.id === idBoton);
-        productosAgregadosAlCarrito[index].cantidad++;
-
-    } else {
-        productoAgregado.cantidad = 1;
-        productosAgregadosAlCarrito.push(productoAgregado);
-    }
-
-    numeroCarrito();
-
-    /*----------------------------LocalStorage----------------------------*/
-
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosAgregadosAlCarrito));
+    const productoAgregado = findProductById(productos, idBoton);
+    
+    // Actualizar carrito
+    carrito = addProductToCart(carrito, productoAgregado);
+    
+    // Guardar en localStorage
+    saveCartToLocalStorage(carrito);
+    
+    // Actualizar contador
+    updateCartBadge(carrito, numerito);
 }
 
-function numeroCarrito() {
-    let nuevoNumerito = productosAgregadosAlCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-    numerito.innerText = nuevoNumerito;
-}
+// Iniciar la aplicación cuando el DOM esté cargado
+document.addEventListener('DOMContentLoaded', init);

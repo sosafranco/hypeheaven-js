@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | HypeHeaven</title>
+    <link rel="shortcut icon" href="./assets/img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/checkout.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <div class="logo-container">
+                <a href="./index.html" class="logo">HypeHeaven</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link">
+                        <i class="bi bi-house-fill"></i> Inicio
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="./login.html" class="nav-link">
+                        <i class="bi bi-person-fill"></i> Iniciar Sesión
+                    </a>
+                </li>
+            </ul>
+            <a href="./cart.html" class="cart-btn">
+                <i class="bi bi-cart-fill"></i> Carrito
+                <span id="numerito" class="cart-count">0</span>
+            </a>
+            <button class="mobile-toggle">
+                <i class="bi bi-list"></i>
+            </button>
+        </nav>
+
+        <main>
+            <h2 class="titulo-principal">Finalizar Compra</h2>
+            
+            <!-- Contenedor para mostrar el resumen del pedido -->
+            <div class="checkout-resumen">
+                <h3>Resumen del pedido</h3>
+                <div id="checkout-productos" class="checkout-productos">
+                    <!-- Los productos se generarán con JavaScript -->
+                </div>
+                <div class="checkout-totales">
+                    <div class="resumen-item">
+                        <span>Subtotal:</span>
+                        <span id="checkout-subtotal">$0</span>
+                    </div>
+                    <div id="checkout-descuento" class="resumen-item disabled">
+                        <!-- El descuento se generará con JavaScript -->
+                    </div>
+                    <div class="resumen-item">
+                        <span>Envío:</span>
+                        <span id="checkout-envio">$0</span>
+                    </div>
+                    <div class="resumen-item resumen-total">
+                        <span>Total:</span>
+                        <span id="checkout-total">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contenedor para el formulario de checkout -->
+            <div class="checkout-container">
+                <div class="checkout-progress">
+                    <div class="progress-step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-text">Información Personal</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-text">Dirección de Envío</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-text">Método de Pago</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <span class="step-number">4</span>
+                        <span class="step-text">Confirmación</span>
+                    </div>
+                </div>
+                
+                <div class="checkout-forms">
+                    <!-- Paso 1: Información Personal -->
+                    <form id="form-personal" class="checkout-form active" data-step="1">
+                        <h3>Información Personal</h3>
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo*</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico*</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono*</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn-next">Continuar</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Paso 2: Dirección de Envío -->
+                    <form id="form-direccion" class="checkout-form" data-step="2">
+                        <h3>Dirección de Envío</h3>
+                        <div class="form-group">
+                            <label for="direccion">Dirección*</label>
+                            <input type="text" id="direccion" name="direccion" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="codigo_postal">Código Postal*</label>
+                                <input type="text" id="codigo_postal" name="codigo_postal" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ciudad">Ciudad*</label>
+                                <input type="text" id="ciudad" name="ciudad" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="provincia">Provincia*</label>
+                            <input type="text" id="provincia" name="provincia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pais">País*</label>
+                            <select id="pais" name="pais" required>
+                                <option value="">Seleccionar país</option>
+                                <option value="AR">Argentina</option>
+                                <option value="CL">Chile</option>
+                                <option value="UY">Uruguay</option>
+                                <option value="PY">Paraguay</option>
+                                <option value="BR">Brasil</option>
+                                <option value="CO">Colombia</option>
+                                <option value="MX">México</option>
+                                <option value="ES">España</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="instrucciones">Instrucciones de entrega (opcional)</label>
+                            <textarea id="instrucciones" name="instrucciones" rows="3"></textarea>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn-prev">Atrás</button>
+                            <button type="button" class="btn-next">Continuar</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Paso 3: Método de Pago -->
+                    <form id="form-pago" class="checkout-form" data-step="3">
+                        <h3>Método de Pago</h3>
+                        <div class="form-group payment-methods">
+                            <div class="payment-method">
+                                <input type="radio" id="tarjeta" name="metodo_pago" value="tarjeta" checked>
+                                <label for="tarjeta">
+                                    <i class="bi bi-credit-card"></i>
+                                    <span>Tarjeta de Crédito/Débito</span>
+                                </label>
+                            </div>
+                            <div class="payment-method">
+                                <input type="radio" id="mercadopago" name="metodo_pago" value="mercadopago">
+                                <label for="mercadopago">
+                                    <i class="bi bi-wallet2"></i>
+                                    <span>MercadoPago</span>
+                                </label>
+                            </div>
+                            <div class="payment-method">
+                                <input type="radio" id="transferencia" name="metodo_pago" value="transferencia">
+                                <label for="transferencia">
+                                    <i class="bi bi-bank"></i>
+                                    <span>Transferencia Bancaria</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div id="tarjeta-detalles" class="payment-details active">
+                            <div class="form-group">
+                                <label for="numero_tarjeta">Número de tarjeta*</label>
+                                <input type="text" id="numero_tarjeta" name="numero_tarjeta" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fecha_vencimiento">Fecha de vencimiento*</label>
+                                    <input type="text" id="fecha_vencimiento" name="fecha_vencimiento" placeholder="MM/AA">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV*</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="123">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="titular">Nombre del titular*</label>
+                                <input type="text" id="titular" name="titular">
+                            </div>
+                        </div>
+                        
+                        <div id="mercadopago-detalles" class="payment-details">
+                            <p class="payment-info">Serás redirigido a MercadoPago para completar el pago después de confirmar el pedido.</p>
+                        </div>
+                        
+                        <div id="transferencia-detalles" class="payment-details">
+                            <p class="payment-info">Nuestros datos bancarios para transferencia:</p>
+                            <div class="bank-details">
+                                <p><strong>Banco:</strong> Banco Nacional</p>
+                                <p><strong>Titular:</strong> HypeHeaven S.A.</p>
+                                <p><strong>CUIT:</strong> 30-12345678-9</p>
+                                <p><strong>CBU:</strong> 0170999601000000123456</p>
+                                <p><strong>Alias:</strong> HYPE.HEAVEN.SHOP</p>
+                            </div>
+                            <p>Una vez realizada la transferencia, envíanos el comprobante a <strong>pagos@hypeheaven.com</strong></p>
+                        </div>
+                        
+                        <div class="form-buttons">
+                            <button type="button" class="btn-prev">Atrás</button>
+                            <button type="button" class="btn-next">Revisar Pedido</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Paso 4: Confirmación -->
+                    <div id="form-confirmacion" class="checkout-form" data-step="4">
+                        <h3>Confirmar Pedido</h3>
+                        <div class="resumen-pedido">
+                            <div class="resumen-seccion">
+                                <h4>Información Personal</h4>
+                                <div id="resumen-personal"></div>
+                            </div>
+                            <div class="resumen-seccion">
+                                <h4>Dirección de Envío</h4>
+                                <div id="resumen-direccion"></div>
+                            </div>
+                            <div class="resumen-seccion">
+                                <h4>Método de Pago</h4>
+                                <div id="resumen-pago"></div>
+                            </div>
+                        </div>
+                        <div class="terminos-condiciones">
+                            <input type="checkbox" id="aceptar_terminos" name="aceptar_terminos" required>
+                            <label for="aceptar_terminos">Acepto los <a href="#" class="terminos-link">términos y condiciones</a> y la <a href="#" class="terminos-link">política de privacidad</a></label>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn-prev">Atrás</button>
+                            <button type="button" id="btn-finalizar" class="btn-finalizar">Confirmar y Pagar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contenedor para el mensaje de pedido completado -->
+            <div id="pedido-completado" class="pedido-completado disabled">
+                <div class="check-icon">
+                    <i class="bi bi-check-circle-fill"></i>
+                </div>
+                <h2>¡Pedido Completado!</h2>
+                <p>Tu pedido ha sido procesado exitosamente.</p>
+                <p>Hemos enviado un correo electrónico a <span id="email-confirmacion"></span> con los detalles de tu compra.</p>
+                <p>Número de pedido: <strong id="numero-pedido"></strong></p>
+                <div class="pedido-buttons">
+                    <a href="./index.html" class="btn-volver-tienda">Volver a la tienda</a>
+                </div>
+            </div>
+        </main>
+        <footer class="main-footer">
+            <p class="texto-footer">¡Síguenos en Instagram! @HypeHeaven</p>
+        </footer>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="./js/checkout.js"></script>
+    <script>
+        // Script para el efecto de blur al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Script para el menú móvil
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html> 

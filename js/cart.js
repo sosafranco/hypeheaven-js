@@ -1,136 +1,160 @@
-/*----------------------------LocalStorage----------------------------*/
-const productosAgregadosAlCarrito = JSON.parse(localStorage.getItem("productos-en-carrito"));
+/**
+ * Script principal para la página del carrito
+ */
 
-/*----------------------------DOM----------------------------*/
+// Importar módulos
+import { 
+    loadCartFromLocalStorage, 
+    saveCartToLocalStorage, 
+    removeProductFromCart, 
+    updateProductQuantity,
+    emptyCart,
+    isValidDiscountCode,
+    saveDiscountCode,
+    getAppliedDiscountCode,
+    getDiscountInfo
+} from './modules/cart.js';
+import { 
+    renderCart, 
+    showNotification, 
+    showConfirmation, 
+    showPurchaseComplete 
+} from './modules/ui.js';
+
+// Elementos del DOM
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
 const contenedorCarritoAcciones = document.querySelector("#carrito-acciones");
-const ContenedorCarritoComprado = document.querySelector("#carrito-comprado");
-let botonesEliminar = document.querySelectorAll(".carrito-producto-eliminar");
+const contenedorCarritoComprado = document.querySelector("#carrito-comprado");
 const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
 const contenedorTotal = document.querySelector("#total");
 const botonComprar = document.querySelector("#carrito-acciones-comprar");
+const contenedorSubtotal = document.querySelector("#subtotal");
+const contenedorDescuento = document.querySelector("#descuento");
+const contenedorCodigoDescuento = document.querySelector("#carrito-codigo-descuento");
+const numerito = document.querySelector("#numerito");
 
-function cargarProductosCarrito() {
-    if (productosAgregadosAlCarrito && productosAgregadosAlCarrito.length > 0) {
+// Variables globales
+let carrito = loadCartFromLocalStorage() || [];
+let discountCode = getAppliedDiscountCode();
 
-        contenedorCarritoVacio.classList.add("disabled");
-        contenedorCarritoProductos.classList.remove("disabled");
-        contenedorCarritoAcciones.classList.remove("disabled");
-        ContenedorCarritoComprado.classList.add("disabled");
+// Contenedores para la función renderCart
+const containers = {
+    emptyCartContainer: contenedorCarritoVacio,
+    productsContainer: contenedorCarritoProductos,
+    actionsContainer: contenedorCarritoAcciones,
+    purchasedContainer: contenedorCarritoComprado,
+    totalContainer: contenedorTotal,
+    subtotalContainer: contenedorSubtotal,
+    discountContainer: contenedorDescuento,
+    discountCodeContainer: contenedorCodigoDescuento
+};
 
-        contenedorCarritoProductos.innerHTML = "";
+// Callbacks para la función renderCart
+const callbacks = {
+    onRemoveProduct: eliminarDelCarrito,
+    onEmptyCart: vaciarCarrito,
+    onUpdateQuantity: actualizarCantidad,
+    onApplyDiscount: aplicarCodigoDescuento
+};
 
-        productosAgregadosAlCarrito.forEach(producto => {
-            const div = document.createElement("div");
-            div.classList.add("carrito-producto");
-            div.innerHTML = `
-            <img class="carrito-producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
-            <div class="carrito-producto-titulo">
-                <small>Product</small>
-                <h3>${producto.titulo}</h3>
-            </div>
-            <div class="carrito-producto-cantidad">
-                <small>Quantity</small>
-                <p>${producto.cantidad}</p>
-            </div>
-            <div class="carrito-producto-precio">
-                <small>Price</small>
-                <p>USD$${producto.precio}</p>
-            </div>
-            <div class="carrito-producto-subtotal">
-                <small>Subtotal</small>
-                <p>USD$${producto.precio * producto.cantidad}</p>
-            </div>
-            <button class="carrito-producto-eliminar" id=${producto.id}><i class="bi bi-trash-fill"></i></button>
-            `;
+// Inicialización
+const init = () => {
+    renderCart(carrito, containers, callbacks);
+    setupEventListeners();
+};
 
-            contenedorCarritoProductos.append(div);
-        })
+// Configurar event listeners
+const setupEventListeners = () => {
+    botonVaciar.addEventListener("click", vaciarCarrito);
+    botonComprar.addEventListener("click", comprarCarrito);
+};
 
-    } else {
-        contenedorCarritoVacio.classList.remove("disabled");
-        contenedorCarritoProductos.classList.add("disabled");
-        contenedorCarritoAcciones.classList.add("disabled");
-        ContenedorCarritoComprado.classList.add("disabled");
-
-    }
-
-    actualizarBotonesEliminar();
-    actualizarTotal();
-}
-
-cargarProductosCarrito();
-
-function actualizarBotonesEliminar() {
-    botonesEliminar = document.querySelectorAll(".carrito-producto-eliminar");
-
-    botonesEliminar.forEach(boton => {
-        boton.addEventListener("click", eliminarDelCarrito);
-    });
-}
-
+// Función para eliminar un producto del carrito
 function eliminarDelCarrito(e) {
-    /*----------------------------TOASTIFY JS----------------------------*/
-    Toastify({
-        text: "Product removed from cart!",
-        duration: 1500,
-        close: false,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-        style: {
-            background: "#2b2b2b",
-            borderRadius: "2rem",
-            textTransform: "uppercase",
-            fontSize: "0.80rem",
-        },
-        onClick: function () { }
-    }).showToast();
+    showNotification("¡Producto eliminado del carrito!");
+    
     const idBoton = e.currentTarget.id;
-    const index = productosAgregadosAlCarrito.findIndex(producto => producto.id === idBoton);
-
-    productosAgregadosAlCarrito.splice(index, 1);
-    cargarProductosCarrito();
-
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosAgregadosAlCarrito));
+    carrito = removeProductFromCart(carrito, idBoton);
+    
+    saveCartToLocalStorage(carrito);
+    renderCart(carrito, containers, callbacks);
+    
+    actualizarContadorCarrito();
 }
 
-botonVaciar.addEventListener("click", vaciarCarrito);
-
+// Función para vaciar el carrito
 function vaciarCarrito() {
-    /*----------------------------SWEET ALERT 2----------------------------*/
-    Swal.fire({
-        title: "Do you want to empty your cart?",
-        icon: "question",
-        html: `${productosAgregadosAlCarrito.reduce((acc, producto) => acc + producto.cantidad, 0)} product/s will be removed from the cart`,
-        showCloseButton: true,
-        showCancelButton: true,
-        focusConfirm: false,
-        confirmButtonText: `Yes`,
-        cancelButtonText: `No`,
-    }).then((result) => {
-        if (result.isConfirmed) {
-            productosAgregadosAlCarrito.length = 0;
-            localStorage.setItem("productos-en-carrito", JSON.stringify(productosAgregadosAlCarrito));
-            cargarProductosCarrito();
-        }
+    const productCount = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    const message = `${productCount} producto/s serán eliminados del carrito`;
+    
+    showConfirmation("¿Deseas vaciar tu carrito?", message, () => {
+        carrito = emptyCart();
+        saveCartToLocalStorage(carrito);
+        renderCart(carrito, containers, callbacks);
+        
+        actualizarContadorCarrito();
     });
 }
 
-function actualizarTotal() {
-    const totalCalculado = productosAgregadosAlCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
-    total.innerText = `$${totalCalculado}`
+// Función para actualizar la cantidad de un producto
+function actualizarCantidad(productId, newQuantity) {
+    if (newQuantity > 0) {
+        carrito = updateProductQuantity(carrito, productId, newQuantity);
+        saveCartToLocalStorage(carrito);
+        renderCart(carrito, containers, callbacks);
+        
+        actualizarContadorCarrito();
+        showNotification("Cantidad actualizada");
+    }
 }
 
-botonComprar.addEventListener("click", comprarCarrito);
+// Función para aplicar un código de descuento
+function aplicarCodigoDescuento(code) {
+    if (!code) {
+        // Si no hay código, remover cualquier descuento existente
+        localStorage.removeItem('discount-codes');
+        discountCode = null;
+        renderCart(carrito, containers, callbacks);
+        showNotification("Código de descuento eliminado");
+        return;
+    }
+    
+    // Verificar si el código es válido
+    if (isValidDiscountCode(code)) {
+        const discountInfo = getDiscountInfo(code);
+        saveDiscountCode(code);
+        discountCode = code;
+        renderCart(carrito, containers, callbacks);
+        showNotification(`¡Descuento del ${discountInfo.percentage}% aplicado!`);
+    } else {
+        showNotification("Código de descuento inválido", { 
+            style: { background: "#aa0000" }
+        });
+    }
+}
+
+// Función para actualizar el contador del carrito en la barra lateral
+function actualizarContadorCarrito() {
+    if (numerito) {
+        const itemCount = carrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+        numerito.innerText = itemCount;
+    }
+}
+
+// Función para finalizar la compra
 function comprarCarrito() {
-
-    productosAgregadosAlCarrito.length = 0;
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosAgregadosAlCarrito));
-
-    contenedorCarritoVacio.classList.add("disabled");
-    contenedorCarritoProductos.classList.add("disabled");
-    contenedorCarritoAcciones.classList.add("disabled");
-    ContenedorCarritoComprado.classList.remove("disabled");
+    // Verificar que el carrito no esté vacío
+    if (carrito.length === 0) {
+        showNotification("Tu carrito está vacío", { 
+            style: { background: "#aa0000" }
+        });
+        return;
+    }
+    
+    // Redirigir al checkout en lugar de vaciar el carrito y mostrar mensaje
+    window.location.href = "./checkout.html";
 }
+
+// Iniciar la aplicación cuando el DOM esté cargado
+document.addEventListener('DOMContentLoaded', init);
