@@ -5,6 +5,7 @@
 // Importar módulos
 import { showNotification } from './modules/ui.js';
 import { getUserData, logout } from './auth.js';
+import { initTheme, createDarkModeToggle } from './modules/theme.js';
 
 // Constantes para almacenamiento local
 const ADDRESSES_KEY = "user-addresses";
@@ -14,6 +15,15 @@ const USER_SETTINGS_KEY = "user-settings";
 
 // Función principal de inicialización
 document.addEventListener('DOMContentLoaded', () => {
+    // Inicializar tema (modo claro/oscuro)
+    initTheme();
+    
+    // Añadir toggle para modo oscuro en la navbar
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        createDarkModeToggle(navMenu);
+    }
+    
     // Verificar si el usuario está logueado
     const userData = getUserData();
     if (!userData) {

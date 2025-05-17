@@ -20,6 +20,10 @@ import {
     showConfirmation, 
     showPurchaseComplete 
 } from './modules/ui.js';
+import {
+    initTheme,
+    createDarkModeToggle
+} from './modules/theme.js';
 
 // Elementos del DOM
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
@@ -60,6 +64,15 @@ const callbacks = {
 
 // Inicialización
 const init = () => {
+    // Inicializar tema (modo claro/oscuro)
+    initTheme();
+    
+    // Añadir toggle para modo oscuro en la navbar
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        createDarkModeToggle(navMenu);
+    }
+    
     renderCart(carrito, containers, callbacks);
     setupEventListeners();
 };

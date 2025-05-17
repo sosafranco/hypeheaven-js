@@ -11,6 +11,7 @@ import {
     getDiscountInfo
 } from './modules/cart.js';
 import { showNotification } from './modules/ui.js';
+import { initTheme, createDarkModeToggle } from './modules/theme.js';
 
 // Elementos del DOM
 const productosContainer = document.getElementById('checkout-productos');
@@ -33,6 +34,15 @@ const COSTO_ENVIO = 15; // Costo fijo de envío
 
 // Inicialización
 const init = () => {
+    // Inicializar tema (modo claro/oscuro)
+    initTheme();
+    
+    // Añadir toggle para modo oscuro en la navbar
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        createDarkModeToggle(navMenu);
+    }
+    
     // Cargar carrito desde localStorage
     carrito = loadCartFromLocalStorage();
     

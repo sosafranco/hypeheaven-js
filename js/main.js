@@ -14,6 +14,10 @@ import {
     showNotification, 
     updateCartBadge 
 } from './modules/ui.js';
+import {
+    initTheme,
+    createDarkModeToggle
+} from './modules/theme.js';
 
 // Elementos del DOM
 const contenedorProductos = document.querySelector("#contenedor-productos");
@@ -26,6 +30,15 @@ let carrito = loadCartFromLocalStorage();
 
 // Inicialización
 const init = async () => {
+    // Inicializar tema (modo claro/oscuro)
+    initTheme();
+    
+    // Añadir toggle para modo oscuro en la navbar
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        createDarkModeToggle(navMenu);
+    }
+    
     // Cargar productos
     productos = await fetchProducts();
     

@@ -14,6 +14,10 @@ import {
     updateCartBadge 
 } from './modules/ui.js';
 import { renderReviews } from './modules/reviews.js';
+import {
+    initTheme,
+    createDarkModeToggle
+} from './modules/theme.js';
 
 // Elementos del DOM
 const contenedorProducto = document.querySelector("#contenedor-producto");
@@ -28,6 +32,15 @@ let tallaSeleccionada = '';
 
 // Inicialización
 const init = async () => {
+    // Inicializar tema (modo claro/oscuro)
+    initTheme();
+    
+    // Añadir toggle para modo oscuro en la navbar
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        createDarkModeToggle(navMenu);
+    }
+    
     // Actualizar contador del carrito
     updateCartBadge(carrito, numerito);
     

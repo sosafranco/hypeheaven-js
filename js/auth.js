@@ -4,6 +4,7 @@
 
 // Importar módulos
 import { showNotification } from './modules/ui.js';
+import { initTheme, createDarkModeToggle } from './modules/theme.js';
 
 // Constantes para almacenamiento local
 const USER_KEY = "user-data";
@@ -11,6 +12,15 @@ const AUTH_TOKEN_KEY = "auth-token";
 
 // Elementos del DOM
 document.addEventListener('DOMContentLoaded', () => {
+    // Inicializar tema (modo claro/oscuro)
+    initTheme();
+    
+    // Añadir toggle para modo oscuro en la navbar
+    const navMenu = document.querySelector('.nav-menu');
+    if (navMenu) {
+        createDarkModeToggle(navMenu);
+    }
+    
     // Tabs de autenticación
     const authTabs = document.querySelectorAll('.auth-tab');
     const authForms = document.querySelectorAll('.auth-form');
