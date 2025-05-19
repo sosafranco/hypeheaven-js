@@ -399,6 +399,22 @@ textarea:focus {
 }
 
 /* Estilos responsive */
+@media (max-width: 992px) {
+    .checkout-container {
+        flex-direction: column;
+    }
+    
+    .checkout-forms {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 2rem;
+    }
+    
+    .checkout-resumen {
+        width: 100%;
+    }
+}
+
 @media (max-width: 768px) {
     .checkout-producto {
         flex-wrap: wrap;
@@ -438,5 +454,86 @@ textarea:focus {
     .btn-next, 
     .btn-finalizar {
         width: 100%;
+    }
+    
+    .payment-method label {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    .progress-step {
+        width: 100%;
+    }
+    
+    .checkout-producto {
+        padding: 1rem;
+    }
+    
+    .checkout-producto-imagen {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .checkout-form {
+        padding: 1.5rem 1rem;
+    }
+    
+    .bank-details {
+        padding: 0.75rem;
+    }
+    
+    .checkout-form h3 {
+        font-size: 1.2rem;
+    }
+    
+    .step-number {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .step-text {
+        font-size: 0.9rem;
+    }
+    
+    .pedido-completado {
+        padding: 2rem 1rem;
+    }
+    
+    .check-icon i {
+        font-size: 4rem;
+    }
+    
+    .pedido-completado h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .checkout-producto-detalles {
+        font-size: 0.8rem;
+    }
+    
+    .checkout-producto-nombre {
+        font-size: 0.9rem;
+    }
+    
+    label {
+        font-size: 0.9rem;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .checkout-totales .resumen-item {
+        font-size: 0.9rem;
     }
 } 

@@ -396,6 +396,10 @@
     .reviews-actions {
         text-align: left;
     }
+    
+    .rating-bars {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -409,6 +413,7 @@
         padding-bottom: 20px;
         border-right: none;
         border-bottom: 1px solid #eee;
+        width: 100%;
     }
     
     .review-header {
@@ -429,5 +434,92 @@
     
     .reviews-filters {
         justify-content: flex-start;
+    }
+    
+    .form-group {
+        width: 100%;
+    }
+    
+    .rating-input, 
+    .form-group input, 
+    .form-group textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .form-buttons {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .cancel-button, 
+    .submit-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .review-feedback {
+        flex-wrap: wrap;
+    }
+    
+    .reviews-stats {
+        padding: 15px;
+    }
+    
+    .review-form-container {
+        padding: 15px;
+    }
+    
+    .review-item {
+        padding: 15px;
+    }
+    
+    .average-rating {
+        font-size: 36px;
+    }
+    
+    .stars-container i {
+        font-size: 16px;
+    }
+    
+    .review-feedback-label {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .review-like, 
+    .review-dislike {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .review-form-container h4 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-reviews h3 {
+        font-size: 18px;
+    }
+    
+    .rating-level,
+    .rating-count {
+        font-size: 12px;
+    }
+    
+    .review-user-avatar {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .review-user-avatar i {
+        font-size: 18px;
+    }
+    
+    .average-rating {
+        font-size: 28px;
     }
 } 

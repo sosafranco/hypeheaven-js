@@ -600,6 +600,19 @@ footer.main-footer {
         width: 100%;
         text-align: right;
     }
+    
+    .codigo-descuento-form {
+        flex-direction: column;
+    }
+    
+    .codigo-descuento-input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .codigo-descuento-boton {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -619,6 +632,9 @@ footer.main-footer {
         padding: 1rem 0;
         transition: all 0.3s ease;
         gap: 0;
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+        z-index: 999;
     }
     
     .nav-menu.active {
@@ -649,11 +665,25 @@ footer.main-footer {
         left: 25%;
         right: 25%;
     }
+    
+    .main-footer {
+        padding: 2rem 5%;
+    }
+    
+    .titulo-principal {
+        font-size: 1.8rem;
+        padding: 0 5%;
+    }
+    
+    .carrito-cantidad-controles {
+        margin-right: 0;
+    }
 }
 
 @media screen and (max-width: 600px) {
     .contenedor-productos {
         grid-template-columns: 1fr;
+        padding: 1rem;
     }
     
     .carrito-acciones {
@@ -678,5 +708,67 @@ footer.main-footer {
     
     .logo {
         font-size: 1.2rem;
+    }
+    
+    main {
+        padding: 60px 0 30px;
+    }
+    
+    .producto {
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .carrito-producto {
+        padding: 1rem;
+    }
+    
+    .carrito-producto-imagen {
+        max-width: 80px;
+    }
+    
+    .carrito-producto-eliminar {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        padding: 0.6rem 2%;
+    }
+    
+    .cart-count {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+    }
+    
+    .carrito-producto-imagen {
+        max-width: 60px;
+    }
+    
+    .producto-agregar {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .cantidad-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .carrito-acciones-vaciar {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .carrito-acciones-total {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .carrito-acciones-comprar {
+        padding: 0.8rem;
+        font-size: 0.9rem;
     }
 }
